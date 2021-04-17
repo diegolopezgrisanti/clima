@@ -1,7 +1,89 @@
+.container {
+  min-height: 75vh;
+  margin-bottom: 5vh;
+}
+
 input {
   text-align: center;
 }
 
 .size {
   font-size: 2rem;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.bgitem {
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+}
+
+p {
+  font-size: 18px;
+}
+
+.tempFont {
+  font-size: 170px;
+}
+.celciusFont {
+  font-size: 40px;
+}
+
+.alignNumberGrades {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alignTemp {
+  align-items: center;
+}
+
+.imgClima {
+  border-radius: 10px;
+  color: white;
+}
+
+.boxTempWeather {
+  color: white;
+  border-radius: 10px;
+}
+
+::placeholder {
+  color: white;
+  font-size: 1em;
+  text-transform: capitalize;
+}
+.form-control {
+  color: white;
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+.altBoxTemp {
+  height: 300px;
+}
+.altBoxCelcius {
+  height: 200px;
+}
+
+@media (max-width: 1024px) {
+  p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .boxFatherTempWeather {
+    width: 360px;
+  }
+}
+
+@media (max-width: 425px) {
+  .boxFatherTempWeather {
+    width: 420px;
+    margin-bottom: 10px;
+  }
 }

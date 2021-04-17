@@ -4,29 +4,123 @@
   </div>
 </div>
 <div class="container pt-4">
-<div class="row">
-  <div class="col-lg-4">
-    <img [src]="urlImagen" alt="img_clima" width="300px" height="300px">
-  </div>
-  <div class="col-lg-6">
-    <input type="text" [(ngModel)]="ciudad" class="form-control form-control-lg size"
-            placeholder="Ingrese Ciudad">
-    <button (click)="obtenerClima()" class="btn btn-primary btn-lg btn-block mt-4 size"
-            [disabled]="ciudad == ''">OBTENER CLIMA</button>
-
-    <div *ngIf="loading" class="text-center mt-3">
-      <div class="spinner-grow text-primary" role="status"></div>
-      <div class="spinner-grow text-primary" role="status"></div>
-      <div class="spinner-grow text-primary" role="status"></div>
+  <div class="row justify-content-center">
+    <div class="col-lg-4">
+      <input type="text" [(ngModel)]="ciudad" class="form-control form-control-lg"
+              placeholder="Ingrese Ciudad">
     </div>
+    <div class="col-lg-4">
+      <button (click)="obtenerClima()" class="btn btn-primary btn-lg btn-block mt-4"
+              [disabled]="ciudad == ''">OBTENER CLIMA</button>
+    </div>
+  </div>
+  <div *ngIf="loading" class="text-center mt-3">
+    <div class="spinner-border text-primary" role="status">
+    </div>
+  </div>
 
-    <div *ngIf="query" class="card mt-3">
-      <div class="card-body">
-        <p><b>Temperatura: </b>{{ temperatura | number: '1.2-2' }} °C</p>
-        <p><b>Humedad: </b>{{ humedad }} %</p>
-        <p><b>Clima: </b>{{ clima }}</p>
+  <div *ngIf="query">
+    <div class="row mt-4 d-flex">
+      <div class="col-lg-6 boxFatherTempWeather">
+        <div class="bg-primary boxTempWeather">
+          <div class="pt-2 pl-3">
+            <p><b>Temperatura:</b></p>
+          </div>
+          <div class="alignNumberGrades">
+            <div class="altBoxTemp">
+              <p class="tempFont mb-0">{{ temperatura }}</p>
+            </div>
+            <div class="altBoxCelcius">
+              <p class="celciusFont">°C</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 boxFatherTempWeather">
+        <div class="bg-primary boxTempWeather">
+          <div class="pt-2 pl-3">
+            <p><b>Clima: </b>{{ clima }}</p>
+          </div>
+          <div class="text-center" style="height: 300px;">
+            <div *ngIf="clima == 'Tormenta con lluvia ligera' || clima == 'Tormenta con lluvia'
+                        || clima == 'Tormenta con lluvia intensa' || clima == 'Tormenta ligera'
+                        || clima == 'Tormenta' || clima == 'Tormenta fuerte'
+                        || clima == 'Tormenta irregular' || clima == 'Tormenta con llovizna ligera'
+                        || clima == 'Tormenta con llovizna' || clima == 'Tormenta con llovizna intensa'">
+              <img src="../assets/thunderstorm600x600_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="clima == 'Llovizna de intensidad ligera' || clima == 'Llovizna'
+                        || clima == 'Llovizna de gran intensidad' || clima == 'Lluvia ligera llovizna'
+                        || clima == 'Llovizna' || clima == 'Llovizna de gran intensidad'
+                        || clima == 'Aguacero y llovizna' || clima == 'Aguacero de gran intensidad y llovizna'
+                        || clima == 'Llovizna de aguacero'">
+              <img src="../assets/cloud-drizzle500x500_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="clima == 'Lluvia ligera' || clima == 'Lluvia moderada'
+                        || clima == 'Lluvia intensa' || clima == 'Lluvias muy intensas'
+                        || clima == 'Lluvia extrema' || clima == 'Lluvia helada'
+                        || clima == 'Lluvia de intensidad ligera' || clima == 'Aguacero'
+                        || clima == 'Chubascos de gran intensidad' || clima == 'Aguacero irregular'">
+              <img src="../assets/cloud-rain500x500_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="clima == 'Nieve ligera' || clima == 'Nieve'
+                        || clima == 'Fuertes nevadas' || clima == 'Aguanieve'
+                        || clima == 'Lluvia ligera y nieve' || clima == 'Lluvia y nieve'
+                        || clima == 'Lluvia ligera nieve' || clima == 'Lluvia intensa nieve'">
+              <img src="../assets/cloud-snow600x600_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="clima == 'Neblina' || clima == 'Niebla'">
+              <img src="../assets/fog600x600_white.png" alt="" width="250" height="250">
+            </div>
+
+            <div *ngIf="clima == 'Cielo limpio'">
+              <img src="../assets/sun400x400_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="clima == 'Nublado'">
+              <img src="../assets/clouds600x600_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="clima == 'Nubes dispersas'">
+              <img src="../assets/sun-cloud600x600_white.png" alt="" width="250" height="250">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="query">
+    <div class="row mt-4">
+      <div class="col">
+        <div class="bgitem bg-primary">
+          <img src="../assets/humidity_white.png" alt="" width="100" height="100">
+          <p><b>Humedad: </b>{{ humedad }} %</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="bgitem bg-primary">
+          <img src="../assets/wind_white.png" alt="" width="100" height="100">
+          <p><b>Viento: </b>{{ viento }} km/h.</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="bgitem bg-primary">
+          <img src="../assets/wind_direction_white.png" alt="" width="100" height="100">
+          <p><b>Viento del: </b>{{ direccionViento }}</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="bgitem bg-primary">
+          <img src="../assets/visibility_white.png" alt="" width="100" height="100">
+          <p><b>Visibilidad: </b>{{ visibilidad }} mts.</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="bgitem bg-primary">
+          <img src="../assets/pressure_white.png" alt="" width="100" height="100">
+          <p><b>Presión: </b>{{ presion }} hPa</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
+

@@ -6,13 +6,15 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
