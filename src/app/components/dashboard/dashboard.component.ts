@@ -8,17 +8,17 @@ import { ClimaService } from 'src/app/services/clima.service';
 })
 export class DashboardComponent implements OnInit {
   //urlImagen = 'https://image.flaticon.com/icons/png/512/1116/1116453.png';
-  ciudad = 'BUENOS AIRES';
-  temperatura = 0;
-  humedad = 0;
-  clima = '';
-  viento = 0;
-  direccionViento = '';
-  visibilidad = 0;
-  presion = 0;
+  city = 'BUENOS AIRES';
+  temperature = 0;
+  humidity = 0;
+  weather = '';
+  wind = 0;
+  windDirection = '';
+  visibility = 0;
+  pressure = 0;
   query = false;
   loading = false;
-  mostrarError = false;
+  showError = false;
 
   constructor(private _climaService: ClimaService) { }
 
@@ -30,291 +30,291 @@ export class DashboardComponent implements OnInit {
     this.query = false;
     this.loading = true;
 
-    this._climaService.getClima(this.ciudad).subscribe(data => {
+    this._climaService.getClima(this.city).subscribe(data => {
 
       console.log(data);
 
       this.loading = false;
       this.query = true;
-      this.temperatura = Math.round(data.main.temp);
-      this.humedad = data.main.humidity;
-      this.visibilidad = data.visibility;
-      this.presion = data.main.pressure;
+      this.temperature = Math.round(data.main.temp);
+      this.humidity = data.main.humidity;
+      this.visibility = data.visibility;
+      this.pressure = data.main.pressure;
 
       switch (data.weather[0].description) {
         case 'thunderstorm with light rain':
-          this.clima = 'Tormenta con lluvia ligera';
+          this.weather = 'Tormenta con lluvia ligera';
           break;
         case 'thunderstorm with rain':
-          this.clima = 'Tormenta con lluvia';
+          this.weather = 'Tormenta con lluvia';
           break;
         case 'thunderstorm with heavy rain':
-          this.clima = 'Tormenta con lluvia intensa';
+          this.weather = 'Tormenta con lluvia intensa';
           break;
         case 'light thunderstorm':
-          this.clima = 'Tormenta ligera';
+          this.weather = 'Tormenta ligera';
           break;
         case 'thunderstorm':
-          this.clima = 'Tormenta';
+          this.weather = 'Tormenta';
           break;
         case 'heavy thunderstorm':
-          this.clima = 'Tormenta fuerte';
+          this.weather = 'Tormenta fuerte';
           break;
         case 'ragged thunderstorm':
-          this.clima = 'Tormenta irregular';
+          this.weather = 'Tormenta irregular';
           break;
         case 'thunderstorm with light drizzle':
-          this.clima = 'Tormenta con llovizna ligera';
+          this.weather = 'Tormenta con llovizna ligera';
           break;
         case 'thunderstorm with drizzle':
-          this.clima = 'Tormenta con llovizna';
+          this.weather = 'Tormenta con llovizna';
           break;
         case 'thunderstorm with heavy drizzle':
-          this.clima = 'Tormenta con llovizna intensa';
+          this.weather = 'Tormenta con llovizna intensa';
           break;
 
         case 'light intensity drizzle':
-          this.clima = 'Llovizna de intensidad ligera';
+          this.weather = 'Llovizna de intensidad ligera';
           break;
         case 'drizzle':
-          this.clima = 'Llovizna';
+          this.weather = 'Llovizna';
           break;
         case 'heavy intensity drizzle':
-          this.clima = 'Llovizna de gran intensidad';
+          this.weather = 'Llovizna de gran intensidad';
           break;
         case 'light intensity drizzle rain':
-          this.clima = 'Lluvia ligera llovizna';
+          this.weather = 'Lluvia ligera llovizna';
           break;
         case 'drizzle rain':
-          this.clima = 'Llovizna';
+          this.weather = 'Llovizna';
           break;
         case 'heavy intensity drizzle rain':
-          this.clima = 'Llovizna de gran intensidad';
+          this.weather = 'Llovizna de gran intensidad';
           break;
         case 'shower rain and drizzle':
-          this.clima = 'Aguacero y llovizna';
+          this.weather = 'Aguacero y llovizna';
           break;
         case 'heavy shower rain and drizzle':
-          this.clima = 'Aguacero de gran intensidad y llovizna';
+          this.weather = 'Aguacero de gran intensidad y llovizna';
           break;
         case 'shower drizzle':
-          this.clima = 'Llovizna de aguacero';
+          this.weather = 'Llovizna de aguacero';
           break;
 
         case 'light rain':
-          this.clima = 'Lluvia ligera';
+          this.weather = 'Lluvia ligera';
           break;
         case 'moderate rain':
-          this.clima = 'Lluvia moderada';
+          this.weather = 'Lluvia moderada';
           break;
         case 'heavy intensity rain':
-          this.clima = 'Lluvia intensa';
+          this.weather = 'Lluvia intensa';
           break;
         case 'very heavy rain':
-          this.clima = 'Lluvias muy intensas';
+          this.weather = 'Lluvias muy intensas';
           break;
         case 'extreme rain':
-          this.clima = 'Lluvia extrema';
+          this.weather = 'Lluvia extrema';
           break;
         case 'freezing rain':
-          this.clima = 'Lluvia helada';
+          this.weather = 'Lluvia helada';
           break;
         case 'light intensity shower rain':
-          this.clima = 'Lluvia de intensidad ligera';
+          this.weather = 'Lluvia de intensidad ligera';
           break;
         case 'shower rain':
-          this.clima = 'Aguacero';
+          this.weather = 'Aguacero';
           break;
         case 'heavy intensity shower rain':
-          this.clima = 'Chubascos de gran intensidad';
+          this.weather = 'Chubascos de gran intensidad';
           break;
         case 'ragged shower rain':
-          this.clima = 'Aguacero irregular';
+          this.weather = 'Aguacero irregular';
           break;
 
         case 'light snow':
-          this.clima = 'Nieve ligera';
+          this.weather = 'Nieve ligera';
           break;
         case 'snow':
-          this.clima = 'Nieve';
+          this.weather = 'Nieve';
           break;
         case 'heavy snow':
-          this.clima = 'Fuertes nevadas';
+          this.weather = 'Fuertes nevadas';
           break;
         case 'sleet':
-          this.clima = 'Aguanieve';
+          this.weather = 'Aguanieve';
           break;
         case 'shower sleet':
-          this.clima = 'Aguanieve';
+          this.weather = 'Aguanieve';
           break;
         case 'light rain and snow':
-          this.clima = 'Lluvia ligera y nieve';
+          this.weather = 'Lluvia ligera y nieve';
           break;
         case 'rain and snow':
-          this.clima = 'Lluvia y nieve';
+          this.weather = 'Lluvia y nieve';
           break;
         case 'light shower snow':
-          this.clima = 'Lluvia ligera nieve';
+          this.weather = 'Lluvia ligera nieve';
           break;
         case 'shower snow':
-          this.clima = 'Nieve';
+          this.weather = 'Nieve';
           break;
         case 'heavy shower snow':
-          this.clima = 'Lluvia intensa nieve';
+          this.weather = 'Lluvia intensa nieve';
           break;
 
         case 'mist':
-          this.clima = 'Neblina';
+          this.weather = 'Neblina';
           break;
         case 'smoke':
-          this.clima = 'Smog';
+          this.weather = 'Smog';
           break;
         case 'haze':
-          this.clima = 'Bruma';
+          this.weather = 'Bruma';
           break;
         case 'sand, dust whirls':
-          this.clima = 'Arena, remolinos de polvo';
+          this.weather = 'Arena, remolinos de polvo';
           break;
         case 'fog':
-          this.clima = 'Niebla';
+          this.weather = 'Niebla';
           break;
         case 'sand':
-          this.clima = 'Arena';
+          this.weather = 'Arena';
           break;
         case 'dust':
-          this.clima = 'Polvo';
+          this.weather = 'Polvo';
           break;
         case 'volcanic ash':
-          this.clima = 'Ceniza volcánica';
+          this.weather = 'Ceniza volcánica';
           break;
         case 'squalls':
-          this.clima = 'Chubascos';
+          this.weather = 'Chubascos';
           break;
         case 'tornado':
-          this.clima = 'Tornado';
+          this.weather = 'Tornado';
           break;
 
         case 'clear sky':
-          this.clima = 'Cielo limpio';
+          this.weather = 'Cielo limpio';
           break;
         case 'few clouds':
-          this.clima = 'Nubes dispersas';
+          this.weather = 'Nubes dispersas';
           break;
         case 'scattered clouds':
-          this.clima = 'Nubes dispersas';
+          this.weather = 'Nubes dispersas';
           break;
         case 'broken clouds':
-          this.clima = 'Nubes dispersas';
+          this.weather = 'Nubes dispersas';
           break;
         case 'overcast clouds':
-          this.clima = 'Nublado';
+          this.weather = 'Nublado';
           break;
 
         case 'tropical storm':
-          this.clima = 'Tormenta tropical';
+          this.weather = 'Tormenta tropical';
           break;
         case 'hurricane':
-          this.clima = 'Huracán';
+          this.weather = 'Huracán';
           break;
         case 'cold':
-          this.clima = 'Frío';
+          this.weather = 'Frío';
           break;
         case 'hot':
-          this.clima = 'Calor';
+          this.weather = 'Calor';
           break;
         case 'windy':
-          this.clima = 'Ventoso';
+          this.weather = 'Ventoso';
           break;
         case 'hail':
-          this.clima = 'Granizo';
+          this.weather = 'Granizo';
           break;
         case 'calm':
-          this.clima = 'Calmo';
+          this.weather = 'Calmo';
           break;
         case 'light breeze':
-          this.clima = 'Brisa ligera';
+          this.weather = 'Brisa ligera';
           break;
         case 'gentle breeze':
-          this.clima = 'Brisa suave';
+          this.weather = 'Brisa suave';
           break;
         case 'moderate breeze':
-          this.clima = 'Brisa moderada';
+          this.weather = 'Brisa moderada';
           break;
         case 'fresh breeze':
-          this.clima = 'Brisa fresca';
+          this.weather = 'Brisa fresca';
           break;
         case 'strong breeze':
-          this.clima = 'Brisa intensa';
+          this.weather = 'Brisa intensa';
           break;
         case 'high wind, near gale':
-          this.clima = 'Viento fuerte, cerca de un vendaval';
+          this.weather = 'Viento fuerte, cerca de un vendaval';
           break;
         case 'gale':
-          this.clima = 'Vendaval';
+          this.weather = 'Vendaval';
           break;
         case 'severe gale':
-          this.clima = 'Vendaval severo';
+          this.weather = 'Vendaval severo';
           break;
         case 'storm':
-          this.clima = 'Tormenta';
+          this.weather = 'Tormenta';
           break;
         case 'violent storm':
-          this.clima = 'Tormenta violenta';
+          this.weather = 'Tormenta violenta';
           break;
 
         default:
-          this.clima = data.weather[0].description;
+          this.weather = data.weather[0].description;
           break;
       }
 
-      this.viento = Math.round(data.wind.speed * 60 * 60 / 1000);
+      this.wind = Math.round(data.wind.speed * 60 * 60 / 1000);
       if(data.wind.deg > 348.75 && data.wind.deg <= 11.25 || data.wind.deg == 0) {
-        this.direccionViento = 'N';
+        this.windDirection = 'N';
       }
       else if(data.wind.deg > 11.25 && data.wind.deg <= 33.75) {
-        this.direccionViento = 'NNE';
+        this.windDirection = 'NNE';
       }
       else if(data.wind.deg > 33.75 && data.wind.deg <= 56.25) {
-        this.direccionViento = 'NE';
+        this.windDirection = 'NE';
       }
       else if(data.wind.deg > 56.25 && data.wind.deg <= 78.75) {
-        this.direccionViento = 'ENE';
+        this.windDirection = 'ENE';
       }
       else if(data.wind.deg > 78.75 && data.wind.deg <= 101.25) {
-        this.direccionViento = 'E';
+        this.windDirection = 'E';
       }
       else if(data.wind.deg > 101.25 && data.wind.deg <= 123.75) {
-        this.direccionViento = 'ESE';
+        this.windDirection = 'ESE';
       }
       else if(data.wind.deg > 123.75 && data.wind.deg <= 146.25) {
-        this.direccionViento = 'SE';
+        this.windDirection = 'SE';
       }
       else if(data.wind.deg > 146.25 && data.wind.deg <= 168.75) {
-        this.direccionViento = 'SSE';
+        this.windDirection = 'SSE';
       }
       else if(data.wind.deg > 168.75 && data.wind.deg <= 191.25) {
-        this.direccionViento = 'S';
+        this.windDirection = 'S';
       }
       else if(data.wind.deg > 191.25 && data.wind.deg <= 213.75) {
-        this.direccionViento = 'SSO';
+        this.windDirection = 'SSO';
       }
       else if(data.wind.deg > 213.75 && data.wind.deg <= 236.25) {
-        this.direccionViento = 'SO';
+        this.windDirection = 'SO';
       }
       else if(data.wind.deg > 236.25 && data.wind.deg <= 258.75) {
-        this.direccionViento = 'OSO';
+        this.windDirection = 'OSO';
       }
       else if(data.wind.deg > 258.75 && data.wind.deg <= 281.25) {
-        this.direccionViento = 'O';
+        this.windDirection = 'O';
       }
       else if(data.wind.deg > 281.25 && data.wind.deg <= 303.75) {
-        this.direccionViento = 'ONO';
+        this.windDirection = 'ONO';
       }
       else if(data.wind.deg > 303.75 && data.wind.deg <= 326.25) {
-        this.direccionViento = 'NO';
+        this.windDirection = 'NO';
       }
       else if(data.wind.deg > 326.25 && data.wind.deg <= 348.75) {
-        this.direccionViento = 'NNO';
+        this.windDirection = 'NNO';
       }
     }, error => {
       console.log(error);
@@ -324,10 +324,10 @@ export class DashboardComponent implements OnInit {
   }
 
   error() {
-    this.mostrarError = true;
+    this.showError = true;
     setTimeout(() => {
-      this.mostrarError = false;
-      this.ciudad = '';
+      this.showError = false;
+      this.city = '';
     }, 3000);
   }
 }

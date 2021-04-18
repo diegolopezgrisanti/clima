@@ -1,4 +1,4 @@
-<div *ngIf="mostrarError" class="alert alert-dismissible alert-danger">
+<div *ngIf="showError" class="alert alert-dismissible alert-danger">
   <div class="text-center">
     <strong>ERROR AL OBTENER EL CLIMA</strong>
   </div>
@@ -6,12 +6,12 @@
 <div class="container pt-4">
   <div class="row justify-content-center">
     <div class="col-lg-4">
-      <input type="text" [(ngModel)]="ciudad" class="form-control form-control-lg"
+      <input type="text" [(ngModel)]="city" class="form-control form-control-lg"
               placeholder="Ingrese Ciudad">
     </div>
     <div class="col-lg-4">
       <button (click)="obtenerClima()" class="btn btn-primary btn-lg btn-block mt-4"
-              [disabled]="ciudad == ''">OBTENER CLIMA</button>
+              [disabled]="city == ''">OBTENER CLIMA</button>
     </div>
   </div>
   <div *ngIf="loading" class="text-center mt-3">
@@ -28,7 +28,7 @@
           </div>
           <div class="alignNumberGrades">
             <div class="altBoxTemp">
-              <p class="tempFont mb-0">{{ temperatura }}</p>
+              <p class="tempFont mb-0">{{ temperature }}</p>
             </div>
             <div class="altBoxCelcius">
               <p class="celciusFont">°C</p>
@@ -39,47 +39,78 @@
       <div class="col-lg-6 boxFatherTempWeather">
         <div class="bg-primary boxTempWeather">
           <div class="pt-2 pl-3">
-            <p><b>Clima: </b>{{ clima }}</p>
+            <p><b>Clima: </b>{{ weather }}</p>
           </div>
           <div class="text-center" style="height: 300px;">
-            <div *ngIf="clima == 'Tormenta con lluvia ligera' || clima == 'Tormenta con lluvia'
-                        || clima == 'Tormenta con lluvia intensa' || clima == 'Tormenta ligera'
-                        || clima == 'Tormenta' || clima == 'Tormenta fuerte'
-                        || clima == 'Tormenta irregular' || clima == 'Tormenta con llovizna ligera'
-                        || clima == 'Tormenta con llovizna' || clima == 'Tormenta con llovizna intensa'">
+            <div *ngIf="weather == 'Tormenta con lluvia ligera' || weather == 'Tormenta con lluvia'
+                        || weather == 'Tormenta con lluvia intensa' || weather == 'Tormenta ligera'
+                        || weather == 'Tormenta' || weather == 'Tormenta fuerte' || weather == 'Tormenta violenta'
+                        || weather == 'Tormenta irregular' || weather == 'Tormenta con llovizna ligera'
+                        || weather == 'Tormenta con llovizna' || weather == 'Tormenta con llovizna intensa'">
               <img src="../assets/thunderstorm600x600_white.png" alt="" width="250" height="250">
             </div>
-            <div *ngIf="clima == 'Llovizna de intensidad ligera' || clima == 'Llovizna'
-                        || clima == 'Llovizna de gran intensidad' || clima == 'Lluvia ligera llovizna'
-                        || clima == 'Llovizna' || clima == 'Llovizna de gran intensidad'
-                        || clima == 'Aguacero y llovizna' || clima == 'Aguacero de gran intensidad y llovizna'
-                        || clima == 'Llovizna de aguacero'">
+            <div *ngIf="weather == 'Llovizna de intensidad ligera' || weather == 'Llovizna'
+                        || weather == 'Llovizna de gran intensidad' || weather == 'Lluvia ligera llovizna'
+                        || weather == 'Llovizna' || weather == 'Llovizna de gran intensidad'
+                        || weather == 'Aguacero y llovizna' || weather == 'Aguacero de gran intensidad y llovizna'
+                        || weather == 'Llovizna de aguacero'">
               <img src="../assets/cloud-drizzle500x500_white.png" alt="" width="250" height="250">
             </div>
-            <div *ngIf="clima == 'Lluvia ligera' || clima == 'Lluvia moderada'
-                        || clima == 'Lluvia intensa' || clima == 'Lluvias muy intensas'
-                        || clima == 'Lluvia extrema' || clima == 'Lluvia helada'
-                        || clima == 'Lluvia de intensidad ligera' || clima == 'Aguacero'
-                        || clima == 'Chubascos de gran intensidad' || clima == 'Aguacero irregular'">
+            <div *ngIf="weather == 'Lluvia ligera' || weather == 'Lluvia moderada'
+                        || weather == 'Lluvia intensa' || weather == 'Lluvias muy intensas'
+                        || weather == 'Lluvia extrema' || weather == 'Lluvia helada'
+                        || weather == 'Lluvia de intensidad ligera' || weather == 'Aguacero'
+                        || weather == 'Chubascos de gran intensidad' || weather == 'Aguacero irregular'">
               <img src="../assets/cloud-rain500x500_white.png" alt="" width="250" height="250">
             </div>
-            <div *ngIf="clima == 'Nieve ligera' || clima == 'Nieve'
-                        || clima == 'Fuertes nevadas' || clima == 'Aguanieve'
-                        || clima == 'Lluvia ligera y nieve' || clima == 'Lluvia y nieve'
-                        || clima == 'Lluvia ligera nieve' || clima == 'Lluvia intensa nieve'">
+            <div *ngIf="weather == 'Nieve ligera' || weather == 'Nieve'
+                        || weather == 'Fuertes nevadas' || weather == 'Aguanieve'
+                        || weather == 'Lluvia ligera y nieve' || weather == 'Lluvia y nieve'
+                        || weather == 'Lluvia ligera nieve' || weather == 'Lluvia intensa nieve'">
               <img src="../assets/cloud-snow600x600_white.png" alt="" width="250" height="250">
             </div>
-            <div *ngIf="clima == 'Neblina' || clima == 'Niebla'">
+            <div *ngIf="weather == 'Neblina' || weather == 'Niebla'">
               <img src="../assets/fog600x600_white.png" alt="" width="250" height="250">
             </div>
-
-            <div *ngIf="clima == 'Cielo limpio'">
+            <div *ngIf="weather == 'Smog'">
+              <img src="../assets/smoke600x600_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="weather == 'Arena, remolinos de polvo' || weather == 'Arena'
+                        || weather == 'Polvo'">
+              <img src="../assets/sun-dust600x600_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="weather == 'Ceniza volcánica'">
+              <img src="../assets/volcano600x600_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="weather == 'Tornado'">
+              <img src="../assets/tornado600x600_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="weather == 'Huracán'">
+              <img src="../assets/hurricane600x600_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="weather == 'Frío'">
+              <img src="../assets/temperature-frigid600x600_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="weather == 'Calor'">
+              <img src="../assets/temperature-hot600x600_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="weather == 'Ventoso' || weather == 'Brisa ligera'
+                        || weather == 'Brisa suave' || weather == 'Brisa moderada'
+                        || weather == 'Brisa fresca' || weather == 'Brisa intensa'
+                        || weather == 'Viento fuerte, cerca de un vendaval' || weather == 'Vendaval'
+                        || weather == 'Vendaval severo' || weather =='Calmo'">
+              <img src="../assets/wind600x600_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="weather == 'Granizo'">
+              <img src="../assets/cloud-hail600x600_white.png" alt="" width="250" height="250">
+            </div>
+            <div *ngIf="weather == 'Cielo limpio'">
               <img src="../assets/sun400x400_white.png" alt="" width="250" height="250">
             </div>
-            <div *ngIf="clima == 'Nublado'">
+            <div *ngIf="weather == 'Nublado'">
               <img src="../assets/clouds600x600_white.png" alt="" width="250" height="250">
             </div>
-            <div *ngIf="clima == 'Nubes dispersas'">
+            <div *ngIf="weather == 'Nubes dispersas'">
               <img src="../assets/sun-cloud600x600_white.png" alt="" width="250" height="250">
             </div>
           </div>
@@ -93,31 +124,31 @@
       <div class="col">
         <div class="bgitem bg-primary">
           <img src="../assets/humidity_white.png" alt="" width="100" height="100">
-          <p><b>Humedad: </b>{{ humedad }} %</p>
+          <p><b>Humedad: </b>{{ humidity }} %</p>
         </div>
       </div>
       <div class="col">
         <div class="bgitem bg-primary">
-          <img src="../assets/wind_white.png" alt="" width="100" height="100">
-          <p><b>Viento: </b>{{ viento }} km/h.</p>
+          <img src="../assets/windsock_white.png" alt="" width="100" height="100">
+          <p><b>Viento: </b>{{ wind }} km/h.</p>
         </div>
       </div>
       <div class="col">
         <div class="bgitem bg-primary">
           <img src="../assets/wind_direction_white.png" alt="" width="100" height="100">
-          <p><b>Viento del: </b>{{ direccionViento }}</p>
+          <p><b>Viento del: </b>{{ windDirection }}</p>
         </div>
       </div>
       <div class="col">
         <div class="bgitem bg-primary">
           <img src="../assets/visibility_white.png" alt="" width="100" height="100">
-          <p><b>Visibilidad: </b>{{ visibilidad }} mts.</p>
+          <p><b>Visibilidad: </b>{{ visibility }} mts.</p>
         </div>
       </div>
       <div class="col">
         <div class="bgitem bg-primary">
           <img src="../assets/pressure_white.png" alt="" width="100" height="100">
-          <p><b>Presión: </b>{{ presion }} hPa</p>
+          <p><b>Presión: </b>{{ pressure }} hPa</p>
         </div>
       </div>
     </div>
