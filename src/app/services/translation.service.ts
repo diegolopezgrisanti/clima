@@ -1,0 +1,87 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TranslatorService {
+
+  private readonly translations: any = {
+    'thunderstorm with light rain': 'Tormenta con lluvia ligera',
+    'thunderstorm with rain': 'Tormenta con lluvia',
+    'thunderstorm with heavy rain': 'Tormenta con lluvia intensa',
+    'light thunderstorm': 'Tormenta ligera',
+    'thunderstorm': 'Tormenta',
+    'heavy thunderstorm': 'Tormenta fuerte',
+    'ragged thunderstorm': 'Tormenta irregular',
+    'thunderstorm with light drizzle': 'Tormenta con llovizna ligera',
+    'thunderstorm with drizzle': 'Tormenta con llovizna',
+    'thunderstorm with heavy drizzle': 'Tormenta con llovizna intensa',
+    'light intensity drizzle': 'Llovizna de intensidad ligera',
+    'drizzle': 'Llovizna',
+    'heavy intensity drizzle': 'Llovizna de gran intensidad',
+    'light intensity drizzle rain': 'Lluvia ligera llovizna',
+    'drizzle rain': 'Llovizna',
+    'heavy intensity drizzle rain': 'Llovizna de gran intensidad',
+    'shower rain and drizzle': 'Aguacero y llovizna',
+    'heavy shower rain and drizzle': 'Aguacero de gran intensidad y llovizna',
+    'shower drizzle': 'Llovizna de aguacero',
+    'light rain': 'Lluvia ligera',
+    'moderate rain': 'Lluvia moderada',
+    'heavy intensity rain': 'Lluvia intensa',
+    'very heavy rain': 'Lluvias muy intensas',
+    'extreme rain': 'Lluvia extrema',
+    'freezing rain': 'Lluvia helada',
+    'light intensity shower rain': 'Lluvia de intensidad ligera',
+    'shower rain': 'Aguacero',
+    'heavy intensity shower rain': 'Chubascos de gran intensidad',
+    'ragged shower rain': 'Aguacero irregular',
+    'light snow': 'Nieve ligera',
+    'snow': 'Nieve',
+    'heavy snow': 'Fuertes nevadas',
+    'sleet': 'Aguanieve',
+    'shower sleet': 'Aguanieve',
+    'light rain and snow': 'Lluvia ligera y nieve',
+    'rain and snow': 'Lluvia y nieve',
+    'light shower snow': 'Lluvia ligera nieve',
+    'shower snow': 'Nieve',
+    'heavy shower snow': 'Lluvia intensa nieve',
+    'mist': 'Neblina',
+    'smoke': 'Smog',
+    'haze': 'Bruma',
+    'sand, dust whirls': 'Arena, remolinos de polvo',
+    'fog': 'Niebla',
+    'sand': 'Arena',
+    'dust': 'Polvo',
+    'volcanic ash': 'Ceniza volcánica',
+    'squalls': 'Chubascos',
+    'tornado': 'Tornado',
+    'clear sky': 'Despejado',
+    'few clouds': 'Nubes dispersas',
+    'scattered clouds': 'Nubes dispersas',
+    'broken clouds': 'Nubes dispersas',
+    'overcast clouds': 'Nublado',
+    'tropical storm': 'Tormenta tropical',
+    'hurricane': 'Huracán',
+    'cold': 'Frío',
+    'hot': 'Calor',
+    'windy': 'Ventoso',
+    'hail': 'Granizo',
+    'calm': 'Calmo',
+    'light breeze': 'Brisa ligera',
+    'gentle breeze': 'Brisa suave',
+    'moderate breeze': 'Brisa moderada',
+    'fresh breeze': 'Brisa fresca',
+    'strong breeze': 'Brisa intensa',
+    'high wind, near gale': 'Viento fuerte, cerca de un vendaval',
+    'gale': 'Vendaval',
+    'severe gale': 'Vendaval severo',
+    'storm': 'Tormenta',
+    'violent storm': 'Tormenta violenta',
+  };
+
+  public translateEnglishToEspanish(englishValue: string): string {
+
+    return this.translations[englishValue];
+
+  }
+}
