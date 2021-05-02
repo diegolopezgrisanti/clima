@@ -63,54 +63,9 @@ export class DashboardComponent implements OnInit {
       this.weather = this._translatorService.translateEnglishToEspanish(data.weather[0].description);
 
       this.wind = Math.round(data.wind.speed * 60 * 60 / 1000);
-      if(data.wind.deg > 348.75 || data.wind.deg <= 11.25) {
-        this.windDirection = 'N';
-      }
-      else if(data.wind.deg > 11.25 && data.wind.deg <= 33.75) {
-        this.windDirection = 'NNE';
-      }
-      else if(data.wind.deg > 33.75 && data.wind.deg <= 56.25) {
-        this.windDirection = 'NE';
-      }
-      else if(data.wind.deg > 56.25 && data.wind.deg <= 78.75) {
-        this.windDirection = 'ENE';
-      }
-      else if(data.wind.deg > 78.75 && data.wind.deg <= 101.25) {
-        this.windDirection = 'E';
-      }
-      else if(data.wind.deg > 101.25 && data.wind.deg <= 123.75) {
-        this.windDirection = 'ESE';
-      }
-      else if(data.wind.deg > 123.75 && data.wind.deg <= 146.25) {
-        this.windDirection = 'SE';
-      }
-      else if(data.wind.deg > 146.25 && data.wind.deg <= 168.75) {
-        this.windDirection = 'SSE';
-      }
-      else if(data.wind.deg > 168.75 && data.wind.deg <= 191.25) {
-        this.windDirection = 'S';
-      }
-      else if(data.wind.deg > 191.25 && data.wind.deg <= 213.75) {
-        this.windDirection = 'SSO';
-      }
-      else if(data.wind.deg > 213.75 && data.wind.deg <= 236.25) {
-        this.windDirection = 'SO';
-      }
-      else if(data.wind.deg > 236.25 && data.wind.deg <= 258.75) {
-        this.windDirection = 'OSO';
-      }
-      else if(data.wind.deg > 258.75 && data.wind.deg <= 281.25) {
-        this.windDirection = 'O';
-      }
-      else if(data.wind.deg > 281.25 && data.wind.deg <= 303.75) {
-        this.windDirection = 'ONO';
-      }
-      else if(data.wind.deg > 303.75 && data.wind.deg <= 326.25) {
-        this.windDirection = 'NO';
-      }
-      else if(data.wind.deg > 326.25 && data.wind.deg <= 348.75) {
-        this.windDirection = 'NNO';
-      }
+
+      this.windDirection = this._climaService.getWindDirection(data.wind.deg);
+
     }, error => {
       console.log(error);
       this.loading = false;
