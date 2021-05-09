@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://api.openweathermap.org/data/2.5/weather?appid=',
-  key: 'hereyourkey'
+  url: 'http://localhost:3000/weather'
 };
 
 /*

@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class ClimaService {
 
   _url;
-  _key;
+  //_key;
 
   private readonly windDirection: any = {
     'NNE': {
@@ -72,23 +72,16 @@ export class ClimaService {
       from: 326.26,
       to: 348.75
     }
-    // 'N': {
-    //   from: 348.76,
-    //   to: 360
-    // },
-    // 'N': {
-    //   from: 0,
-    //   to: 11.25
-    // }
   }
 
   constructor(private http: HttpClient) {
     this._url = environment.url;
-    this._key = environment.key;
+    // this._key = environment.key;
   }
 
   getClima(ciudad: string): Observable<any> {
-    const URL = this._url + this._key + '&q=' + ciudad + '&units=metric';
+    //const URL = this._url + this._key + '&q=' + ciudad + '&units=metric';
+    const URL = this._url + "?city=" + ciudad;
     return this.http.get(URL);
   }
 
