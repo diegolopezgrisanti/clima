@@ -55,16 +55,15 @@ export class DashboardComponent implements OnInit {
 
       this.loading = false;
       this.query = true;
-      this.temperature = Math.round(data.main.temp);
-      this.humidity = data.main.humidity;
+      this.temperature = Math.round(data.temperature);
+      this.humidity = data.humidity;
       this.visibility = data.visibility;
-      this.pressure = data.main.pressure;
+      this.pressure = data.pressure;
 
-      this.weather = this._translatorService.translateEnglishToEspanish(data.weather[0].description);
+      this.weather = this._translatorService.translateEnglishToEspanish(data.weather_description);
 
-      this.wind = Math.round(data.wind.speed * 60 * 60 / 1000);
-
-      this.windDirection = this._climaService.getWindDirection(data.wind.deg);
+      this.wind = data.wind.speed;
+      this.windDirection = data.wind.direction;
 
     }, error => {
       console.log(error);
